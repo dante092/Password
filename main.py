@@ -6,7 +6,7 @@ alpha_list=[]
 print('\n')
 print(' PASSWORD STRENGTH TEST'.center(40, '='))
 
-testpassword = getpass.getpass('\nPASSWORD: ')
+testpassword = getpass.getpass('\nPASSWORD: ') # USes getpass to hide password when typing in terminal. 
 print('PASWORD RESULTS'.center(40,'='))
 
 # Uses Regexes to examine password.
