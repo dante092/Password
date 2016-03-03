@@ -1,24 +1,32 @@
-text = 'Pt Nyln' 
+text = """ Greg...!   ll  l l l  l  l """
 
-def caesar_cypher(text, cypher_number):
-    """ Encrypts text using Caesar's Cypher"""
+
+
+def caesar_cypher(text, cypher_key):
+    """ Encrypts & Decrypts text using Caesar's Cypher"""
    
-    command = input('To Encode press: 1 \nTo Decode press: 2\nCommand: ')
+    command = int(input('To Encode press: 1 \nTo Decode press: 2\nCommand:'))
+    
+    
     if command == 2:
-        cypher_number = -cypher_number 
+        # If Decode option(2) is choosen, the cypher is converted into
+        # a negative Number.
+        cypher_key = -cypher_key
     
-    loop_breaker = 0
+    loop_breaker = 0 # Keeps track of every time the code loops. 
     
-    while loop_breaker != len(text): 
-        for letter in text: 
-            if letter.isalpha():
-                convert_to_number = ord(letter)
-                apply_cypher = convert_to_number + cypher_number
-                convert_to_character = chr(apply_cypher)
-                text = text.replace(letter, convert_to_character)
-                loop_breaker += 1 
-            else:
-                loop_breaker += 1 
+    while loop_breaker != len(text): # The code will run until the length of Loop_breaker equals the length of word. Ensuring that all letters are checked. 
+    
+        for letter in text: # loops through eah in character in text. 
+        
+            if letter.isalpha():# Only runs if the character(letter) is a letter. 
+                convert_to_number = ord(letter) # uses ord() which returns the numerical unicode point of a character. i.e ord('a') would result in 97.
+                apply_cypher = convert_to_number + cypher_key # Adds the character number plus the cypher_key. i.e 97 + 7 = 104 , or if decoding 97 + -7 = 90. 
+                convert_to_character = chr(apply_cypher) # chr() converts the number back into a character. i.e our previeous 104 would be chr(104) = h, or if decoding our 90 would be chr(90) = z.  
+                text = text.replace(letter, convert_to_character)# Replaces the current letter with our new 'rotated' letter. i.e text.replace(a,h) or if decoding text.replace(a, z)
+                loop_breaker += 1 # adds one to the loop count to record that the letter has completed the loop. Ensuring the loop will close as soon as it equals the amount of letters in a word.
+            else:# Runs only if character(letter) is not alphabetical
+                loop_breaker += 1 # keeps track of loop
                 continue
         print('\n' + text)
         return text 
