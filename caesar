@@ -1,0 +1,26 @@
+text = 'Pt Nyln' 
+
+def caesar_cypher(text, cypher_number):
+    """ Encrypts text using Caesar's Cypher"""
+   
+    command = input('To Encode press: 1 \nTo Decode press: 2\nCommand: ')
+    if command == 2:
+        cypher_number = -cypher_number 
+    
+    loop_breaker = 0
+    
+    while loop_breaker != len(text): 
+        for letter in text: 
+            if letter.isalpha():
+                convert_to_number = ord(letter)
+                apply_cypher = convert_to_number + cypher_number
+                convert_to_character = chr(apply_cypher)
+                text = text.replace(letter, convert_to_character)
+                loop_breaker += 1 
+            else:
+                loop_breaker += 1 
+                continue
+        print('\n' + text)
+        return text 
+            
+caesar_cypher(text, 7)
